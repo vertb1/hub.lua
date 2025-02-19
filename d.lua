@@ -1200,7 +1200,7 @@ Library.Sections.__index = Library.Sections;
 				Sections = {};
 				Elements = {};
 				Dragging = { false, UDim2.new(0, 0, 0, 0) };
-				Size = Options.Size or Options.size or UDim2.new(0, 550,0, 600);
+				Size = Options.Size or Options.size or UDim2.new(0, 550,0, 650); -- Increased height by 50
 				Title = Options.Title or Options.title or "soulhub";
 			};
 			
@@ -1221,13 +1221,13 @@ Library.Sections.__index = Library.Sections;
 			local SubText = Instance.new('TextLabel', TitleArea)
 			
 			TitleArea.Name = "TitleArea"
-			TitleArea.Position = UDim2.new(0, 0, 0, 1) 
-			TitleArea.Size = UDim2.new(1, 0, 0, 55)
+			TitleArea.Position = UDim2.new(0, 0, 0, 1)
+			TitleArea.Size = UDim2.new(1, 0, 0, 65) -- Increased from 55 to 65
 			TitleArea.BackgroundTransparency = 1
 			TitleArea.ZIndex = 2
 			
 			TitleText.Name = "TitleText"
-			TitleText.Position = UDim2.new(0, 15, 0, 12)
+			TitleText.Position = UDim2.new(0, 15, 0, 15) -- Adjusted for better spacing
 			TitleText.Size = UDim2.new(1, -30, 0, 20)
 			TitleText.BackgroundTransparency = 1
 			TitleText.Text = Window.Title
@@ -1239,7 +1239,7 @@ Library.Sections.__index = Library.Sections;
 			TitleText.ZIndex = 2
 			
 			SubText.Name = "SubText" 
-			SubText.Position = UDim2.new(0, 15, 0, 32)
+			SubText.Position = UDim2.new(0, 15, 0, 38) -- Adjusted for better spacing
 			SubText.Size = UDim2.new(1, -30, 0, 20)
 			SubText.BackgroundTransparency = 1
 			SubText.Text = game.PlaceId .. " | " .. os.date("%m/%d/%y")
@@ -1267,8 +1267,8 @@ Library.Sections.__index = Library.Sections;
 			Inline.BorderSizePixel = 0
 
 			-- Adjust HolderOutline position to account for title
-			HolderOutline.Position = UDim2.new(0,7,0,65) -- Increased from 55 to 65
-			HolderOutline.Size = UDim2.new(1,-14,1,-72) -- Increased from -62 to -72
+			HolderOutline.Position = UDim2.new(0,7,0,75) -- Increased from 65 to 75
+			HolderOutline.Size = UDim2.new(1,-14,1,-82) -- Increased from -72 to -82
 
 			--
 			Accent.Name = "Accent"
