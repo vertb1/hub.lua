@@ -1208,12 +1208,19 @@ Library.Sections.__index = Library.Sections;
 			local ScreenGui = Instance.new('ScreenGui', game.CoreGui)
 			local Outline = Instance.new('Frame', ScreenGui)
 			local Inline = Instance.new('Frame', Outline)
+			local Accent = Instance.new('Frame', Inline)
+			local HolderOutline = Instance.new('Frame', Inline)
+			local HolderInline = Instance.new('Frame', HolderOutline)
+			local Tabs = Instance.new('Frame', HolderInline)
+			local UIListLayout = Instance.new('UIListLayout', Tabs)
+			local DragButton = Instance.new('TextButton', Outline)
+			local KeybindList = Library:KeybindList()
 			
 			-- Create top margin frame for title
 			local TopMargin = Instance.new('Frame', Inline)
 			TopMargin.Name = "TopMargin"
 			TopMargin.Position = UDim2.new(0, 0, 0, 0)
-			TopMargin.Size = UDim2.new(1, 0, 0, 25) -- Extra space at top
+			TopMargin.Size = UDim2.new(1, 0, 0, 25)
 			TopMargin.BackgroundTransparency = 1
 			TopMargin.ZIndex = 2
 
@@ -1239,55 +1246,37 @@ Library.Sections.__index = Library.Sections;
 			TitleText.TextStrokeTransparency = 0
 			TitleText.ZIndex = 2
 
-			-- Adjust main content area
-			HolderOutline.Position = UDim2.new(0,7,0,32) -- Start below title margin
-			HolderOutline.Size = UDim2.new(1,-14,1,-39) -- Adjust for title margin
+			-- Setup main UI elements
+			ScreenGui.DisplayOrder = 2
+			
+			Outline.Name = "Outline"
+			Outline.Position = UDim2.new(0.5,0,0.5,0)
+			Outline.Size = Window.Size
+			Outline.BackgroundColor3 = Color3.new(0.1765,0.1765,0.1765)
+			Outline.BorderColor3 = Color3.new(0.0392,0.0392,0.0392)
+			Outline.AnchorPoint = Vector2.new(0.5,0.5)
+			
+			Inline.Name = "Inline"
+			Inline.Position = UDim2.new(0,1,0,1)
+			Inline.Size = UDim2.new(1,-2,1,-2)
+			Inline.BackgroundColor3 = Color3.new(0.0784,0.0784,0.0784)
+			Inline.BorderSizePixel = 0
 
-			--
 			Accent.Name = "Accent"
 			Accent.Size = UDim2.new(1,0,0,1)
 			Accent.BackgroundColor3 = Library.Accent
 			Accent.BorderSizePixel = 0
-			Accent.BorderColor3 = Color3.new(0,0,0)
 			table.insert(Library.ThemeObjects, Accent)
-			--
+
+			-- Adjust main content area
 			HolderOutline.Name = "HolderOutline"
-			HolderOutline.Position = UDim2.new(0,7,0,11)
-			HolderOutline.Size = UDim2.new(1,-14,1,-18)
+			HolderOutline.Position = UDim2.new(0,7,0,32) -- Start below title margin
+			HolderOutline.Size = UDim2.new(1,-14,1,-39) -- Adjust for title margin
 			HolderOutline.BackgroundColor3 = Color3.new(0.1765,0.1765,0.1765)
 			HolderOutline.BorderColor3 = Color3.new(0.0392,0.0392,0.0392)
-			--
-			HolderInline.Name = "HolderInline"
-			HolderInline.Position = UDim2.new(0,1,0,1)
-			HolderInline.Size = UDim2.new(1,-2,1,-2)
-			HolderInline.BackgroundColor3 = Color3.new(0.0784,0.0784,0.0784)
-			HolderInline.BorderSizePixel = 0
-			HolderInline.BorderColor3 = Color3.new(0,0,0)
-			--
-			Tabs.Name = "Tabs"
-			Tabs.Size = UDim2.new(1,0,0,22)
-			Tabs.BackgroundColor3 = Color3.new(1,1,1)
-			Tabs.BackgroundTransparency = 1
-			Tabs.BorderSizePixel = 0
-			Tabs.BorderColor3 = Color3.new(0,0,0)
-			--
-			UIListLayout.FillDirection = Enum.FillDirection.Horizontal
-			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-			--
-			DragButton.Name = "DragButton"
-			DragButton.Size = UDim2.new(1,0,0,10)
-			DragButton.BackgroundColor3 = Color3.new(1,1,1)
-			DragButton.BackgroundTransparency = 1
-			DragButton.BorderSizePixel = 0
-			DragButton.BorderColor3 = Color3.new(0,0,0)
-			DragButton.Text = ""
-			DragButton.TextColor3 = Color3.new(0,0,0)
-			DragButton.AutoButtonColor = false
-			DragButton.FontFace = Font.new(Font:GetRegistry("menu_plex"))
-			DragButton.TextSize = 14
-			
-            
-			
+
+			-- Rest of the window setup...
+
 			-- // Elements
 			Window.Elements = {
 				TabHolder = Tabs,
