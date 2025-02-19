@@ -1201,6 +1201,7 @@ Library.Sections.__index = Library.Sections;
 				Elements = {};
 				Dragging = { false, UDim2.new(0, 0, 0, 0) };
 				Size = Options.Size or Options.size or UDim2.new(0, 550,0, 600);
+				Title = Options.Title or Options.title or "soulhub";
 			};
 			
 			local ScreenGui = Instance.new('ScreenGui', game.CoreGui)
@@ -1221,15 +1222,15 @@ Library.Sections.__index = Library.Sections;
 			
 			TitleArea.Name = "TitleArea"
 			TitleArea.Position = UDim2.new(0, 0, 0, 1) 
-			TitleArea.Size = UDim2.new(1, 0, 0, 45)
+			TitleArea.Size = UDim2.new(1, 0, 0, 55)
 			TitleArea.BackgroundTransparency = 1
 			TitleArea.ZIndex = 2
 			
 			TitleText.Name = "TitleText"
-			TitleText.Position = UDim2.new(0, 15, 0, 8)
+			TitleText.Position = UDim2.new(0, 15, 0, 12)
 			TitleText.Size = UDim2.new(1, -30, 0, 20)
 			TitleText.BackgroundTransparency = 1
-			TitleText.Text = "soulhub"
+			TitleText.Text = Window.Title
 			TitleText.TextColor3 = Color3.fromRGB(255, 255, 255)
 			TitleText.TextSize = 16
 			TitleText.Font = Library.Font
@@ -1238,10 +1239,10 @@ Library.Sections.__index = Library.Sections;
 			TitleText.ZIndex = 2
 			
 			SubText.Name = "SubText" 
-			SubText.Position = UDim2.new(0, 15, 0, 25)
+			SubText.Position = UDim2.new(0, 15, 0, 32)
 			SubText.Size = UDim2.new(1, -30, 0, 20)
 			SubText.BackgroundTransparency = 1
-			SubText.Text = "Park | 02/08/25"
+			SubText.Text = game.PlaceId .. " | " .. os.date("%m/%d/%y")
 			SubText.TextColor3 = Color3.fromRGB(145, 145, 145)
 			SubText.TextSize = 14
 			SubText.Font = Library.Font
@@ -1266,8 +1267,8 @@ Library.Sections.__index = Library.Sections;
 			Inline.BorderSizePixel = 0
 
 			-- Adjust HolderOutline position to account for title
-			HolderOutline.Position = UDim2.new(0,7,0,55) -- Moved down to account for title
-			HolderOutline.Size = UDim2.new(1,-14,1,-62) -- Adjusted size
+			HolderOutline.Position = UDim2.new(0,7,0,65) -- Increased from 55 to 65
+			HolderOutline.Size = UDim2.new(1,-14,1,-72) -- Increased from -62 to -72
 
 			--
 			Accent.Name = "Accent"
