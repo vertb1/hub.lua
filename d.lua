@@ -1200,53 +1200,48 @@ Library.Sections.__index = Library.Sections;
 				Sections = {};
 				Elements = {};
 				Dragging = { false, UDim2.new(0, 0, 0, 0) };
-				Size = Options.Size or Options.size or UDim2.new(0, 550,0, 670); -- Increased height more to fit title
-				Title = Options.Title or Options.title or "soulhub";
-				Game = Options.Game or Options.game or "Park";
+				Size = Options.Size or Options.size or UDim2.new(0, 550,0, 670);
+				Title = Options.Title or Options.title or "vertb1";
+				Game = Options.Game or Options.game or game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name;
 			};
-			
+
 			local ScreenGui = Instance.new('ScreenGui', game.CoreGui)
 			local Outline = Instance.new('Frame', ScreenGui)
 			local Inline = Instance.new('Frame', Outline)
-			local Accent = Instance.new('Frame', Inline)
-			local HolderOutline = Instance.new('Frame', Inline)
-			local HolderInline = Instance.new('Frame', HolderOutline)
-			local Tabs = Instance.new('Frame', HolderInline)
-			local UIListLayout = Instance.new('UIListLayout', Tabs)
-			local DragButton = Instance.new('TextButton', Outline)
-			local KeybindList = Library:KeybindList()
 			
+			-- Create top margin frame for title
+			local TopMargin = Instance.new('Frame', Inline)
+			TopMargin.Name = "TopMargin"
+			TopMargin.Position = UDim2.new(0, 0, 0, 0)
+			TopMargin.Size = UDim2.new(1, 0, 0, 25) -- Extra space at top
+			TopMargin.BackgroundTransparency = 1
+			TopMargin.ZIndex = 2
+
 			-- Add title area
-			local TitleArea = Instance.new('Frame', Inline)
+			local TitleArea = Instance.new('Frame', TopMargin)
 			local TitleText = Instance.new('TextLabel', TitleArea)
-			local SubText = Instance.new('TextLabel', TitleArea)
 			
 			TitleArea.Name = "TitleArea"
-			TitleArea.Position = UDim2.new(0, 0, 0, 1)
-			TitleArea.Size = UDim2.new(1, 0, 0, 75) -- Increased more for better spacing
+			TitleArea.Position = UDim2.new(0, 0, 0, 0)
+			TitleArea.Size = UDim2.new(1, 0, 1, 0)
 			TitleArea.BackgroundTransparency = 1
 			TitleArea.ZIndex = 2
 			
 			TitleText.Name = "TitleText"
-			TitleText.Position = UDim2.new(0, 15, 0, 20) -- Moved down slightly
-			TitleText.Size = UDim2.new(1, -30, 0, 20)
+			TitleText.Position = UDim2.new(0, 0, 0, 0)
+			TitleText.Size = UDim2.new(1, 0, 1, 0)
 			TitleText.BackgroundTransparency = 1
 			TitleText.Text = string.format("%s | %s | %s", Window.Title, Window.Game, os.date("%m/%d/%y"))
 			TitleText.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TitleText.TextSize = 16
+			TitleText.TextSize = 13
 			TitleText.FontFace = Font.new(Font:GetRegistry("menu_plex"))
-			TitleText.TextXAlignment = Enum.TextXAlignment.Left
+			TitleText.TextXAlignment = Enum.TextXAlignment.Center
 			TitleText.TextStrokeTransparency = 0
 			TitleText.ZIndex = 2
-			
-			-- Remove separate subtitle since we combined it into title
-			if SubText then
-				SubText:Destroy()
-			end
 
-			-- Adjust content area to account for larger title area
-			HolderOutline.Position = UDim2.new(0,7,0,85) -- Moved down more
-			HolderOutline.Size = UDim2.new(1,-14,1,-92) -- Adjusted size
+			-- Adjust main content area
+			HolderOutline.Position = UDim2.new(0,7,0,32) -- Start below title margin
+			HolderOutline.Size = UDim2.new(1,-14,1,-39) -- Adjust for title margin
 
 			--
 			Accent.Name = "Accent"
