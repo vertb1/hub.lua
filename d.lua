@@ -1200,8 +1200,9 @@ Library.Sections.__index = Library.Sections;
 				Sections = {};
 				Elements = {};
 				Dragging = { false, UDim2.new(0, 0, 0, 0) };
-				Size = Options.Size or Options.size or UDim2.new(0, 550,0, 650); -- Increased height by 50
+				Size = Options.Size or Options.size or UDim2.new(0, 550,0, 670); -- Increased height more to fit title
 				Title = Options.Title or Options.title or "soulhub";
+				Game = Options.Game or Options.game or "Park";
 			};
 			
 			local ScreenGui = Instance.new('ScreenGui', game.CoreGui)
@@ -1222,15 +1223,15 @@ Library.Sections.__index = Library.Sections;
 			
 			TitleArea.Name = "TitleArea"
 			TitleArea.Position = UDim2.new(0, 0, 0, 1)
-			TitleArea.Size = UDim2.new(1, 0, 0, 65) -- Increased from 55 to 65
+			TitleArea.Size = UDim2.new(1, 0, 0, 75) -- Increased more for better spacing
 			TitleArea.BackgroundTransparency = 1
 			TitleArea.ZIndex = 2
 			
 			TitleText.Name = "TitleText"
-			TitleText.Position = UDim2.new(0, 15, 0, 15) -- Adjusted for better spacing
+			TitleText.Position = UDim2.new(0, 15, 0, 20) -- Moved down slightly
 			TitleText.Size = UDim2.new(1, -30, 0, 20)
 			TitleText.BackgroundTransparency = 1
-			TitleText.Text = Window.Title
+			TitleText.Text = string.format("%s | %s | %s", Window.Title, Window.Game, os.date("%m/%d/%y"))
 			TitleText.TextColor3 = Color3.fromRGB(255, 255, 255)
 			TitleText.TextSize = 16
 			TitleText.FontFace = Font.new(Font:GetRegistry("menu_plex"))
@@ -1238,37 +1239,14 @@ Library.Sections.__index = Library.Sections;
 			TitleText.TextStrokeTransparency = 0
 			TitleText.ZIndex = 2
 			
-			SubText.Name = "SubText" 
-			SubText.Position = UDim2.new(0, 15, 0, 38) -- Adjusted for better spacing
-			SubText.Size = UDim2.new(1, -30, 0, 20)
-			SubText.BackgroundTransparency = 1
-			SubText.Text = game.PlaceId .. " | " .. os.date("%m/%d/%y")
-			SubText.TextColor3 = Color3.fromRGB(145, 145, 145)
-			SubText.TextSize = 14
-			SubText.FontFace = Font.new(Font:GetRegistry("menu_plex"))
-			SubText.TextXAlignment = Enum.TextXAlignment.Left
-			SubText.TextStrokeTransparency = 0
-			SubText.ZIndex = 2
+			-- Remove separate subtitle since we combined it into title
+			if SubText then
+				SubText:Destroy()
+			end
 
-			-- Adjust other elements to account for title area
-			ScreenGui.DisplayOrder = 2
-			
-			Outline.Name = "Outline"
-			Outline.Position = UDim2.new(0.5,0,0.5,0)
-			Outline.Size = Window.Size
-			Outline.BackgroundColor3 = Color3.new(0.1765,0.1765,0.1765)
-			Outline.BorderColor3 = Color3.new(0.0392,0.0392,0.0392)
-			Outline.AnchorPoint = Vector2.new(0.5,0.5)
-			
-			Inline.Name = "Inline"
-			Inline.Position = UDim2.new(0,1,0,1)
-			Inline.Size = UDim2.new(1,-2,1,-2)
-			Inline.BackgroundColor3 = Color3.new(0.0784,0.0784,0.0784)
-			Inline.BorderSizePixel = 0
-
-			-- Adjust HolderOutline position to account for title
-			HolderOutline.Position = UDim2.new(0,7,0,75) -- Increased from 65 to 75
-			HolderOutline.Size = UDim2.new(1,-14,1,-82) -- Increased from -72 to -82
+			-- Adjust content area to account for larger title area
+			HolderOutline.Position = UDim2.new(0,7,0,85) -- Moved down more
+			HolderOutline.Size = UDim2.new(1,-14,1,-92) -- Adjusted size
 
 			--
 			Accent.Name = "Accent"
